@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Menú de Restaurante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #d4a373;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .menu {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu h2 {
+      border-bottom: 2px solid #d4a373;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #d4a373;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .item {
+      display: flex;|
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .price {
+      color: #d4a373;
+      font-weight: bold;
+    }
+
+    .description {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    /* Botón de edición */
+    #saveButton {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #d4a373;
+      color: white;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+
+    #saveButton:hover {
+      background-color: #b28260;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Restaurante Madrid</h1>
+</header>
+
+<section class="menu">
+  <h2>Entradas</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Bruschetta</span>
+        <span class="price" contenteditable="true">$5.00</span>
+      </div>
+      <p class="description" contenteditable="true">Pan tostado con tomate, albahaca y aceite de oliva.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Sopa de Tomate</span>
+        <span class="price" contenteditable="true">$4.50</span>
+      </div>
+      <p class="description" contenteditable="true">Sopa casera de tomate con un toque de crema.</p>
+    </li>
+  </ul>
+
+  <h2>Platos Principales</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Pasta Carbonara</span>
+        <span class="price" contenteditable="true">$12.00</span>
+      </div>
+      <p class="description" contenteditable="true">Pasta en salsa cremosa con tocino y parmesano.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Pollo a la Parrilla</span>
+        <span class="price" contenteditable="true">$15.00</span>
+      </div>
+      <p class="description" contenteditable="true">Pollo marinado a la parrilla con vegetales asados.</p>
+    </li>
+  </ul>
+
+  <h2>Postres</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Tarta de Manzana</span>
+        <span class="price" contenteditable="true">$6.00</span>
+      </div>
+      <p class="description" contenteditable="true">Tarta casera de manzana con una bola de helado de vainilla.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name" contenteditable="true">Tiramisú</span>
+        <span class="price" contenteditable="true">$7.00</span>
+      </div>
+      <p class="description" contenteditable="true">Postre italiano con capas de bizcocho y crema de mascarpone.</p>
+    </li>
+  </ul>
+
+  <button id="saveButton">Guardar Cambios</button>
+</section>
+
+<script>
+  // Función para guardar los cambios en localStorage
+  document.getElementById('saveButton').addEventListener('click', function() {
+    let items = document.querySelectorAll('.name, .price, .description');
+    let menuData = [];
+
+    items.forEach(item => {
+      menuData.push({
+        content: item.innerText,
+        className: item.className
+      });
+    });
+
+    // Guardar los datos en localStorage
+    localStorage.setItem('menuData', JSON.stringify(menuData));
+    alert('Los cambios han sido guardados.');
+  });
+
+  // Restaurar los datos editados si existen en localStorage
+  window.onload = function() {
+    const storedData = localStorage.getItem('menuData');
+    if (storedData) {
+      const menuData = JSON.parse(storedData);
+      let items = document.querySelectorAll('.name, .price, .description');
+      items.forEach((item, index) => {
+        item.innerText = menuData[index].content;
+      });
+    }
+  };
+</script>
+</body>
+</html>

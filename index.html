@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú de Restaurante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #d4a373;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .menu {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu h2 {
+      border-bottom: 2px solid #d4a373;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #d4a373;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .price {
+      color: #d4a373;
+      font-weight: bold;
+    }
+
+    .description {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Restaurante Madrid</h1>
+</header>
+
+<section class="menu">
+  <h2>Entradas</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name">Bruschetta</span>
+        <span class="price">$5.00</span>
+      </div>
+      <p class="description">Pan tostado con tomate, albahaca y aceite de oliva.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name">Sopa de Tomate</span>
+        <span class="price">$4.50</span>
+      </div>
+      <p class="description">Sopa casera de tomate con un toque de crema.</p>
+    </li>
+  </ul>
+
+  <h2>Platos Principales</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name">Pasta Carbonara</span>
+        <span class="price">$12.00</span>
+      </div>
+      <p class="description">Pasta en salsa cremosa con tocino y parmesano.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name">Pollo a la Parrilla</span>
+        <span class="price">$15.00</span>
+      </div>
+      <p class="description">Pollo marinado a la parrilla con vegetales asados.</p>
+    </li>
+  </ul>
+
+  <h2>Postres</h2>
+  <ul>
+    <li>
+      <div class="item">
+        <span class="name">Tarta de Manzana</span>
+        <span class="price">$6.00</span>
+      </div>
+      <p class="description">Tarta casera de manzana con una bola de helado de vainilla.</p>
+    </li>
+    <li>
+      <div class="item">
+        <span class="name">Tiramisú</span>
+        <span class="price">$7.00</span>
+      </div>
+      <p class="description">Postre italiano con capas de bizcocho y crema de mascarpone.</p>
+    </li>
+  </ul>
+  <a href="viewport.html"><button>hola</button></a>
+</section>
+
+<script>
+  // Restaurar los datos guardados en localStorage
+  window.onload = function() {
+    const storedData = localStorage.getItem('menuData');
+    if (storedData) {
+      const menuData = JSON.parse(storedData);
+      let items = document.querySelectorAll('.name, .price, .description');
+      items.forEach((item, index) => {
+        item.innerText = menuData[index].content;
+      });
+    }
+  };
+</script>
+</body>
+</html>
