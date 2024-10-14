@@ -56,6 +56,32 @@
       padding: 0;
     }
 
+    .buttonStart {
+      box-shadow: 3px 5px 0px 0px #1564ad;
+      background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+      background-color:#79bbff;
+      border-radius:20px;
+      border:1px solid #337bc4;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Trebuchet MS;
+      font-size:24px;
+      font-weight:bold;
+      padding:21px 30px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #528ecc;
+    }
+    .buttonStart:hover {
+      background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+      background-color:#378de5;
+    }
+    .buttonStart:active {
+      position:relative;
+      top:1px;
+    }
+
+
 
     .image-item {
       text-align: center;
@@ -100,29 +126,14 @@
 <section class="menu">
 
   <h2>Bienvenido, es un placer tenerlo de vuelta</h2>
-  <div class="image-grid">
-    <div class="image-item">
-      <a href="index.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Desayunos</p>
-    </div>
-    <div class="image-item">
-      <a href="index.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Almuerzos</p>
-    </div>
-    <div class="image-item">
-      <a href="index.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Cenas</p>
-    </div>
-    <div class="image-item">
-      <a href="index.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Oh algo mas...</p>
-    </div>
-  </div>
   <div class="image-grid2">
     <div class="image-item">
       <img id="chef-suggestion" src="img/almuerzo.png" alt="sugerencia">
       <p>Pruebe la sugerencia de nuestro chef</p>
-    </div>
+  </div>
+  </div>
+  <div class="image-grid">
+    <a href="menuView.html"><button class="buttonStart">Comenzar</button></a>
   </div>
 
   <a href="galery.html">Cambiar imagen de la sugerencia del chef</a>

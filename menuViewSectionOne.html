@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú del Restaurante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #925a23;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .menu {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu h2 {
+      border-bottom: 2px solid #d4a373;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      color: #d4a373;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .name, .price, .description {
+      font-weight: bold;
+    }
+
+    .price {
+      color: #d4a373;
+    }
+
+    .description {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <h1>Menú del Restaurante</h1>
+</header>
+
+<section class="menu">
+  <h2>Paquetes</h2>
+  <ul id="entradas"></ul>
+
+</section>
+<a href="menuEdit.html"><but>hola tonotos</but></a>
+
+<script>
+  // Cargar el menú guardado en localStorage
+  window.onload = function() {
+    const storedData = localStorage.getItem('menuData');
+    if (storedData) {
+      const menuData = JSON.parse(storedData);
+
+      Object.keys(menuData).forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = ''; // Limpiar la sección
+
+        // Añadir solo los platillos que estén activos
+        menuData[sectionId].forEach(itemData => {
+          if (itemData.active) {  // Verificar si el platillo está activo
+            const newItem = `
+              <li>
+                <div class="item">
+                  <span class="name">${itemData.name}</span>
+                  <span class="price">${itemData.price}</span>
+                </div>
+                <p class="description">${itemData.description}</p>
+              </li>`;
+            section.insertAdjacentHTML('beforeend', newItem);
+          }
+        });
+      });
+    }
+  };
+</script>
+</body>
+</html>
