@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menú de Restaurante</title>
+  <title>Menú del Restaurante</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
     }
 
     header {
-      background-color: #d4a373;
+      background-color: #925a23;
       padding: 20px;
       text-align: center;
       color: white;
@@ -69,76 +69,61 @@
 </head>
 <body>
 <header>
-  <h1>Restaurante Madrid</h1>
+  <h1>Restaurante Madrid - Menú</h1>
 </header>
 
-<section class="menu">
-  <h2>Entradas</h2>
-  <ul>
-    <li>
-      <div class="item">
-        <span class="name">Bruschetta</span>
-        <span class="price">$5.00</span>
-      </div>
-      <p class="description">Pan tostado con tomate, albahaca y aceite de oliva.</p>
-    </li>
-    <li>
-      <div class="item">
-        <span class="name">Sopa de Tomate</span>
-        <span class="price">$4.50</span>
-      </div>
-      <p class="description">Sopa casera de tomate con un toque de crema.</p>
-    </li>
-  </ul>
-
-  <h2>Platos Principales</h2>
-  <ul>
-    <li>
-      <div class="item">
-        <span class="name">Pasta Carbonara</span>
-        <span class="price">$12.00</span>
-      </div>
-      <p class="description">Pasta en salsa cremosa con tocino y parmesano.</p>
-    </li>
-    <li>
-      <div class="item">
-        <span class="name">Pollo a la Parrilla</span>
-        <span class="price">$15.00</span>
-      </div>
-      <p class="description">Pollo marinado a la parrilla con vegetales asados.</p>
-    </li>
-  </ul>
-
-  <h2>Postres</h2>
-  <ul>
-    <li>
-      <div class="item">
-        <span class="name">Tarta de Manzana</span>
-        <span class="price">$6.00</span>
-      </div>
-      <p class="description">Tarta casera de manzana con una bola de helado de vainilla.</p>
-    </li>
-    <li>
-      <div class="item">
-        <span class="name">Tiramisú</span>
-        <span class="price">$7.00</span>
-      </div>
-      <p class="description">Postre italiano con capas de bizcocho y crema de mascarpone.</p>
-    </li>
-  </ul>
-  <a href="viewport.html"><button>hola</button></a>
+<section class="menu" id="menuDisplay">
+  <!-- El menú será mostrado aquí -->
 </section>
+<a href="viewport.html">aline</a>
 
 <script>
-  // Restaurar los datos guardados en localStorage
+  // Función para cargar y mostrar el menú guardado en localStorage
   window.onload = function() {
     const storedData = localStorage.getItem('menuData');
     if (storedData) {
       const menuData = JSON.parse(storedData);
-      let items = document.querySelectorAll('.name, .price, .description');
-      items.forEach((item, index) => {
-        item.innerText = menuData[index].content;
+      const menuDisplay = document.getElementById('menuDisplay');
+
+      // Borrar contenido previo
+      menuDisplay.innerHTML = '';
+
+      // Mostrar cada sección del menú
+      Object.keys(menuData).forEach(sectionId => {
+        let sectionTitle = '';
+        switch(sectionId) {
+          case 'entradas':
+            sectionTitle = 'Entradas';
+            break;
+          case 'platos-principales':
+            sectionTitle = 'Platos Principales';
+            break;
+          case 'postres':
+            sectionTitle = 'Postres';
+            break;
+        }
+
+        // Crear un título de sección
+        const sectionElement = document.createElement('h2');
+        sectionElement.textContent = sectionTitle;
+        menuDisplay.appendChild(sectionElement);
+
+        // Crear la lista de platillos de la sección
+        const ul = document.createElement('ul');
+        menuData[sectionId].forEach(itemData => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <div class="item">
+              <span class="name">${itemData.name}</span>
+              <span class="price">${itemData.price}</span>
+            </div>
+            <p class="description">${itemData.description}</p>`;
+          ul.appendChild(li);
+        });
+        menuDisplay.appendChild(ul);
       });
+    } else {
+      document.getElementById('menuDisplay').innerHTML = '<p>El menú está vacío. Por favor, agregue elementos en la página de edición.</p>';
     }
   };
 </script>

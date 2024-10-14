@@ -46,18 +46,18 @@
     }
 
     .item {
-      display: flex;|
+      display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 5px;
     }
 
-    .name {
+    .name, .price, .description {
       font-weight: bold;
     }
 
     .price {
       color: #d4a373;
-      font-weight: bold;
     }
 
     .description {
@@ -67,9 +67,7 @@
     }
 
     /* Botón de edición */
-    #saveButton {
-      display: block;
-      width: 100%;
+    #saveButton, .addButton, .deleteButton {
       padding: 10px;
       background-color: #d4a373;
       color: white;
@@ -80,9 +78,24 @@
       margin-top: 20px;
     }
 
-    #saveButton:hover {
+    #saveButton:hover, .addButton:hover, .deleteButton:hover {
       background-color: #b28260;
     }
+
+    .deleteButton {
+      background-color: #ff4c4c;
+      margin-left: 10px;
+    }
+
+    .deleteButton:hover {
+      background-color: #e64444;
+    }
+
+    .addButton {
+      display: block;
+      width: 100%;
+    }
+
   </style>
 </head>
 <body>
@@ -92,11 +105,12 @@
 
 <section class="menu">
   <h2>Entradas</h2>
-  <ul>
+  <ul id="entradas">
     <li>
       <div class="item">
         <span class="name" contenteditable="true">Bruschetta</span>
         <span class="price" contenteditable="true">$5.00</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Pan tostado con tomate, albahaca y aceite de oliva.</p>
     </li>
@@ -104,17 +118,20 @@
       <div class="item">
         <span class="name" contenteditable="true">Sopa de Tomate</span>
         <span class="price" contenteditable="true">$4.50</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Sopa casera de tomate con un toque de crema.</p>
     </li>
   </ul>
+  <button class="addButton" onclick="addItem('entradas')">Agregar Platillo</button>
 
   <h2>Platos Principales</h2>
-  <ul>
+  <ul id="platos-principales">
     <li>
       <div class="item">
         <span class="name" contenteditable="true">Pasta Carbonara</span>
         <span class="price" contenteditable="true">$12.00</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Pasta en salsa cremosa con tocino y parmesano.</p>
     </li>
@@ -122,17 +139,20 @@
       <div class="item">
         <span class="name" contenteditable="true">Pollo a la Parrilla</span>
         <span class="price" contenteditable="true">$15.00</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Pollo marinado a la parrilla con vegetales asados.</p>
     </li>
   </ul>
+  <button class="addButton" onclick="addItem('platos-principales')">Agregar Platillo</button>
 
   <h2>Postres</h2>
-  <ul>
+  <ul id="postres">
     <li>
       <div class="item">
         <span class="name" contenteditable="true">Tarta de Manzana</span>
         <span class="price" contenteditable="true">$6.00</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Tarta casera de manzana con una bola de helado de vainilla.</p>
     </li>
@@ -140,10 +160,12 @@
       <div class="item">
         <span class="name" contenteditable="true">Tiramisú</span>
         <span class="price" contenteditable="true">$7.00</span>
+        <button class="deleteButton">Eliminar</button>
       </div>
       <p class="description" contenteditable="true">Postre italiano con capas de bizcocho y crema de mascarpone.</p>
     </li>
   </ul>
+  <button class="addButton" onclick="addItem('postres')">Agregar Platillo</button>
 
   <button id="saveButton">Guardar Cambios</button>
 </section>
@@ -151,19 +173,27 @@
 <script>
   // Función para guardar los cambios en localStorage
   document.getElementById('saveButton').addEventListener('click', function() {
-    let items = document.querySelectorAll('.name, .price, .description');
-    let menuData = [];
+    let menuSections = ['entradas', 'platos-principales', 'postres'];
+    let menuData = {};
 
-    items.forEach(item => {
-      menuData.push({
-        content: item.innerText,
-        className: item.className
+    menuSections.forEach(sectionId => {
+      let sectionItems = [];
+      let items = document.querySelectorAll(`#${sectionId} li`);
+
+      items.forEach(item => {
+        let name = item.querySelector('.name').innerText;
+        let price = item.querySelector('.price').innerText;
+        let description = item.querySelector('.description').innerText;
+
+        sectionItems.push({ name, price, description });
       });
+
+      menuData[sectionId] = sectionItems;
     });
 
-    // Guardar los datos en localStorage
+    // Guardar los datos del menú en localStorage
     localStorage.setItem('menuData', JSON.stringify(menuData));
-    alert('Los cambios han sido guardados.');
+    window.location.href = 'index.html';
   });
 
   // Restaurar los datos editados si existen en localStorage
@@ -171,12 +201,53 @@
     const storedData = localStorage.getItem('menuData');
     if (storedData) {
       const menuData = JSON.parse(storedData);
-      let items = document.querySelectorAll('.name, .price, .description');
-      items.forEach((item, index) => {
-        item.innerText = menuData[index].content;
+
+      Object.keys(menuData).forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = ''; // Limpiar la sección
+
+        menuData[sectionId].forEach(itemData => {
+          const newItem = `
+            <li>
+              <div class="item">
+                <span class="name" contenteditable="true">${itemData.name}</span>
+                <span class="price" contenteditable="true">${itemData.price}</span>
+                <button class="deleteButton">Eliminar</button>
+              </div>
+              <p class="description" contenteditable="true">${itemData.description}</p>
+            </li>`;
+          section.insertAdjacentHTML('beforeend', newItem);
+        });
+      });
+
+      // Asignar eventos de eliminación a los nuevos elementos
+      document.querySelectorAll('.deleteButton').forEach(button => {
+        button.addEventListener('click', function() {
+          this.parentElement.parentElement.remove();
+        });
       });
     }
   };
+
+  // Función para añadir un nuevo platillo
+  function addItem(sectionId) {
+    const section = document.getElementById(sectionId);
+    const newItem = `
+      <li>
+        <div class="item">
+          <span class="name" contenteditable="true">Nuevo Platillo</span>
+          <span class="price" contenteditable="true">$0.00</span>
+          <button class="deleteButton">Eliminar</button>
+        </div>
+        <p class="description" contenteditable="true">Descripción del platillo.</p>
+      </li>`;
+    section.insertAdjacentHTML('beforeend', newItem);
+
+    // Asignar el evento de eliminación al nuevo botón
+    section.querySelector('li:last-child .deleteButton').addEventListener('click', function() {
+      this.parentElement.parentElement.remove();
+    });
+  }
 </script>
 </body>
 </html>

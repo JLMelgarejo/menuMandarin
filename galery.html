@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Imágenes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+<h1>Seleccione una Imagen</h1>
+
+<div class="gallery">
+  <img src="img/otros.png" alt="Sugerencia 1" onclick="selectImage('img/otros.png')">
+  <img src="img/snacks.webp" alt="Sugerencia 2" onclick="selectImage('img/snacks.webp')">
+  <img src="img/desayuno.png" alt="Sugerencia 3" onclick="selectImage('img/desayuno.png')">
+  <!-- Agrega más imágenes según sea necesario -->
+  <!-- Agrega más imágenes según sea necesario -->
+</div>
+
+<script>
+  function selectImage(imageSrc) {
+    // Guardar la imagen seleccionada en el localStorage
+    localStorage.setItem('chefSuggestionImage', imageSrc);
+    // Redirigir a la página principal
+    window.location.href = 'menuIndex.html';
+  }
+</script>
+</body>
+</html>
