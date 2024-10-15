@@ -5,42 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menú de Restaurante</title>
   <style>
-    @media (max-width: 600px) {
-      .image-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    /* Estilos generales para pantallas grandes */
     body {
       font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
+      background: #e9f48f;
       margin: 0;
       padding: 0;
       color: #333;
     }
 
-    p{
+    p {
       color: #925a23;
-      font-size: 50px;
+      font-size: 2em;
     }
 
     header {
-      background-color: #d4a373;
+      background-color: #e9f48f;
       padding: 20px;
       text-align: center;
       color: white;
+      position: relative;
     }
+
+    #topBorder{
+      position: absolute;
+      padding: 10px;
+      top: 0;
+      left: 0;
+      width: 100px; /* Tamaño fijo para que no se ajuste automáticamente */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+    #bottonBorder{
+      position: absolute;
+      padding: 10px;
+      bottom: 0;
+      right: 0;
+      width: 100px; /* Tamaño fijo para que no se ajuste automáticamente */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+
+
+
 
     h1 {
       margin: 0;
       font-size: 2.5em;
+      position: relative;
+      z-index: 1;
     }
 
     .menu {
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
-      background-color: #fff;
+      background-color: #e9f48f;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -56,15 +74,14 @@
       padding: 0;
     }
 
-
     .image-item {
       text-align: center;
     }
 
     .image-item img {
       width: 100%;
-      height: 200px; /* Establece una altura fija */
-      object-fit: cover; /* Recorta la imagen si no ocupa todo el espacio */
+      height: 200px;
+      object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -72,7 +89,7 @@
     .image-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px; /* Espacio entre las columnas */
+      gap: 20px;
       margin-top: 20px;
     }
 
@@ -84,62 +101,151 @@
       margin-top: 20px;
     }
 
-
-
     .image-item p {
       margin-top: 10px;
-      color: #666;
+      color: #e9f48f;
+    }
+
+    footer {
+      background-color: #e9f48f;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    /* Estilo del marco inferior en la esquina inferior derecha */
+    footer img:first-child {
+      position: absolute;
+      padding: 10px;
+      bottom: 0;
+      right: 0;
+      width: 100px; /* Tamaño fijo para que no se ajuste automáticamente */
+      height: auto; /* Mantiene la proporción de la imagen */
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .menu {
+        max-width: 100%;
+        padding: 10px;
+      }
+
+      .image-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .image-item img {
+        height: 150px;
+      }
+
+      header img:first-child {
+        width: 300px; /* Mantener el tamaño fijo en móviles */
+      }
+
+      .image-grid2 {
+        flex-direction: column;
+      }
+
+      /* Estilos para pantallas móviles y tabletas */
+      @media (max-width: 1024px) {
+        #chef-suggestion {
+          width: 100%; /* Ocupa el 100% del ancho disponible */
+          max-width: 600px; /* Establece un ancho máximo para evitar que se estire demasiado */
+          height: auto; /* Mantiene la proporción original de la imagen */
+          display: block; /* Asegura que el margen automático funcione */
+          margin-left: auto; /* Margen izquierdo automático */
+          margin-right: auto; /* Margen derecho automático */
+        }
+
+        /* Ajustes para centrar el texto */
+        p {
+          text-align: center; /* Centra el texto */
+          color: #925a23;
+          font-size: 1.5em; /* Ajusta el tamaño del texto para pantallas más pequeñas */
+        }
+      }
+
+      /* Estilos generales */
+      #chef-suggestion {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 800px; /* Controla el tamaño máximo de la imagen en pantallas grandes */
+        height: auto; /* Mantiene la proporción */
+      }
+
+      footer {
+        background-color: #e9f48f;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
     }
   </style>
 </head>
+
 <body>
 <header>
-  <h1>Restaurante Madrid</h1>
+  <img src="img/fullHorizontalLogoMandarin.png" alt="Logo Mandarin">
 </header>
+<img id="topBorder" src="img/marcoSuperior.png" alt="Marco decorativo superior">
+<img id="chef-suggestion" src="img/almuerzo.png" alt="Sugerencia del chef">
+<a href="menuView.html"><p>Pruebe la sugerencia de nuestro chef</p></a>
+<img id="bottonBorder" src="img/marcoInferior.png" alt="Marco decorativo inferior">
 
-<section class="menu">
-
-  <h2>Bienvenido, es un placer tenerlo de vuelta</h2>
-  <div class="image-grid">
-    <div class="image-item">
-      <a href="menuViewSectionOne.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Paquetes</p>
-    </div>
-    <div class="image-item">
-      <a href="menuViewSectionTwo.html"><img src="img/desayuno.png" alt="desayuno"></a>
-      <p>Individual</p>
-    </div>
-  </div>
-  <div class="image-grid2">
-    <div class="image-item">
-      <img id="chef-suggestion" src="img/almuerzo.png" alt="sugerencia">
-      <p>Pruebe la sugerencia de nuestro chef</p>
-    </div>
-  </div>
-
-  <a href="galery.html">Cambiar imagen de la sugerencia del chef</a>
-
-</section>
-<a href="menuCover2.html">gallery edit</a>
 <script>
   // Restaurar los datos guardados en localStorage
   window.onload = function() {
     const storedData = localStorage.getItem('menuData');
+
     if (storedData) {
       const menuData = JSON.parse(storedData);
-      let items = document.querySelectorAll('.name, .price, .description');
-      items.forEach((item, index) => {
-        item.innerText = menuData[index].content;
-      });
+
+      // Seleccionar solo los elementos con clase 'name', 'price' o 'description'
+      const items = document.querySelectorAll('.name, .price, .description');
+
+      // Validar que el número de datos coincida con los elementos en el DOM
+      if (menuData.length === items.length) {
+        items.forEach((item, index) => {
+          item.innerText = menuData[index].content;
+        });
+      } else {
+        console.error("El número de elementos del menú no coincide con los datos guardados.");
+      }
     }
-  };
-  // Restaurar la imagen de la sugerencia del chef desde el localStorage
-  window.onload = function() {
+
+    // Restaurar la imagen de la sugerencia del chef desde el localStorage
     const chefSuggestionImage = localStorage.getItem('chefSuggestionImage');
     if (chefSuggestionImage) {
       document.getElementById('chef-suggestion').src = chefSuggestionImage;
     }
   };
+
+  // Función para guardar los datos actualizados del menú en localStorage
+  function saveMenuData() {
+    const items = document.querySelectorAll('.name, .price, .description');
+    const menuData = [];
+
+    items.forEach(item => {
+      menuData.push({ content: item.innerText });
+    });
+
+    // Guardar en localStorage
+    localStorage.setItem('menuData', JSON.stringify(menuData));
+  }
+
+  // Ejemplo de cómo actualizar la imagen de sugerencia del chef y guardarla
+  function updateChefSuggestion(imageUrl) {
+    document.getElementById('chef-suggestion').src = imageUrl;
+    localStorage.setItem('chefSuggestionImage', imageUrl);
+  }
 </script>
 </body>
 </html>
