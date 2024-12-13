@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Platillo</title>
+    <link rel="stylesheet" href="/css/addStyles.css">
+</head>
+<body>
+<h1>Agregar Nuevo Platillo</h1>
+<form action="/add" method="POST">
+    <label for="categoria">Categoría:</label>
+    <input type="text" id="categoria" name="categoria" required><br><br>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" required></textarea><br><br>
+
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" required><br><br>
+
+    <label for="disponibilidad">Disponibilidad:</label>
+    <select id="disponibilidad" name="disponibilidad">
+        <option value="1">Disponible</option>
+        <option value="0">No Disponible</option>
+    </select><br><br>
+
+    <button type="submit">Agregar Platillo</button>
+</form>
+<a href="/admin">Volver al Panel de Administración</a>
+</body>
+</html>

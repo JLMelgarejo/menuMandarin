@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Platillos</title>
+    <link rel="stylesheet" href="editAdminStyles.css">
+</head>
+<body>
+<header>
+    <h1>Administración de Platillos</h1>
+</header>
+
+<main>
+    <a href="/add" class="btn">Agregar Nuevo Platillo</a>
+    <a href="/coverEdit" class="btn">Editar portada</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Disponibilidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% platillos.forEach(platillo => { %>
+        <tr>
+            <td data-label="Categoria"><%=platillo.categoria%></td>
+            <td data-label="Nombre"><%= platillo.nombre %></td>
+            <td data-label="Descripción"><%= platillo.descripcion %></td>
+            <td data-label="Precio">$<%= platillo.precio %></td>
+            <td data-label="Disponibilidad" class="<%= platillo.disponibilidad ? 'disponible' : 'no-disponible' %>">
+                <%= platillo.disponibilidad ? 'Disponible' : 'No Disponible' %>
+            </td>
+
+            <td data-label="Acciones">
+                <a href="/edit/<%= platillo.id %>" class="btn">Editar</a>
+                <form action="/delete/<%= platillo.id %>" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+                    <button type="submit" class="btn btn-delete">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <a href="/" class="btn">Volver al Menú Principal</a>
+    <a href="/logout" class="btn">Cerrar sesion</a>
+</main>
+
+
+<script>
+  function confirmDelete() {
+    return confirm('¿Estás seguro de que deseas eliminar este platillo?');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Platillo</title>
+    <link rel="stylesheet" href="/css/coverEditStyles.css"> <!-- O el archivo de estilos que estés usando -->
+</head>
+<body>
+<h2>Portada Actual</h2>
+<% if (currentCover) { %>
+    <img src="/img/coverImages/<%= currentCover %>" alt="Portada Actual" width="300">
+<% } else { %>
+    <p>No se ha seleccionado ninguna portada actual.</p>
+<% } %>
+
+<form action="/coverEdit" method="POST">
+    <h3>Selecciona una nueva imagen de portada:</h3>
+
+    <% images.forEach(image => { %>
+        <div>
+            <input
+                    type="radio"
+                    id="<%= image %>"
+                    name="portadaSeleccionada"
+                    value="<%= image %>"
+                    <%= image === currentCover ? 'checked' : '' %>
+                    required>
+            <label for="<%= image %>">
+                <img src="/img/coverImages/<%= image %>" alt="<%= image %>" width="150">
+            </label>
+        </div>
+    <% }); %>
+
+    <button type="submit">Establecer como Portada</button>
+    <a href="/" class="btn">Volver al Menú Principal</a>
+</form>
+</body>
+</html>

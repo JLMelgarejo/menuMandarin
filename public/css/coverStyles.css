@@ -1,0 +1,119 @@
+/* Estilos generales para el cuerpo */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para la cubierta del menú */
+.menu-cover {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Altura completa de la ventana */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen */
+}
+
+/* Capa de superposición para la cubierta */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+/* Estilo para el nombre del restaurante */
+.restaurant-name {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Estilo para el mensaje de bienvenida */
+.overlay p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  font-weight: 300;
+}
+
+/* Estilo para el eslogan */
+.tagline {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* Estilo para el botón */
+.view-menu {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.view-menu:hover {
+  background-color: #e67e22;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .restaurant-name {
+    font-size: 2.5rem; /* Reducir tamaño de fuente */
+  }
+
+  .overlay p {
+    font-size: 1rem; /* Reducir tamaño del mensaje */
+    margin: 0.2rem 0;
+  }
+
+  .tagline {
+    font-size: 1.2rem; /* Reducir tamaño del eslogan */
+  }
+
+  .view-menu {
+    padding: 10px 20px; /* Ajustar el tamaño del botón */
+    font-size: 1rem; /* Reducir el tamaño de la fuente */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .restaurant-name {
+    font-size: 2rem; /* Aún más pequeño en pantallas muy pequeñas */
+  }
+
+  .overlay p {
+    font-size: 0.9rem; /* Más pequeño para pantallas pequeñas */
+  }
+
+  .tagline {
+    font-size: 1rem; /* Reducir aún más */
+  }
+
+  .view-menu {
+    padding: 8px 16px; /* Ajustar aún más el tamaño del botón */
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente */
+  }
+}
+
+html {
+  --s: 51px;
+  --c1: #98855d;
+  --c2: #476074;
+  --_g: #0000 83%, var(--c1) 85% 99%, #0000 101%;
+  background: radial-gradient(27% 29% at right, var(--_g)) calc(var(--s) / 2) var(--s), radial-gradient(27% 29% at left, var(--_g)) calc(var(--s) / -2) var(--s), radial-gradient(29% 27% at top, var(--_g)) 0 calc(var(--s) / 2), radial-gradient(29% 27% at bottom, var(--_g)) 0 calc(var(--s) / -2) var(--c2);
+  background-size: calc(2* var(--s)) calc(2* var(--s));
+}

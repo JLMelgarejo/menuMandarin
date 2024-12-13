@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Platillos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1 id="encabezado">Menú de Platillos Disponibles</h1>
+</header>
+
+<!-- Carrusel de categorías -->
+<div class="carrusel">
+    <div class="carrusel-items">
+        <% for (let categoria in platillosPorCategoria) { %>
+            <button class="categoria-boton" onclick="scrollToCategoria('<%= categoria %>')">
+                <%= categoria %>
+            </button>
+        <% } %>
+    </div>
+</div>
+
+<main>
+    <% if (Object.keys(platillosPorCategoria).length > 0) { %>
+        <% for (let categoria in platillosPorCategoria) { %>
+            <section id="<%= categoria %>" class="categoria">
+                <h2><%= categoria %></h2>
+                <ul class="platillos-lista">
+                    <% platillosPorCategoria[categoria].forEach(platillo => { %>
+                        <li class="platillo-item">
+                            <h3><%= platillo.nombre %></h3>
+                            <p><%= platillo.descripcion %></p>
+                            <p>Precio: $<%= platillo.precio.toFixed(2) %></p>
+                        </li>
+                    <% }) %>
+                </ul>
+            </section>
+        <% } %>
+    <% } else { %>
+        <p>No hay platillos disponibles en este momento.</p>
+    <% } %>
+</main>
+
+<footer>
+    <p>© 2024 Jorge Melgarejo</p>
+</footer>
+
+<!-- Botón flotante -->
+<button id="boton-arriba" class="boton-flotante" onclick="scrollToTop()">↑</button>
+
+<script>
+  // Función para desplazarse a una categoría específica
+  function scrollToCategoria(categoriaId) {
+    const categoriaSection = document.getElementById(categoriaId);
+    if (categoriaSection) {
+      categoriaSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Función para desplazarse al carrusel
+  function scrollToTop() {
+    const carrusel = document.querySelector('#encabezado');
+    if (encabezado) {
+      carrusel.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Mostrar/ocultar el botón flotante según la posición de desplazamiento
+  window.addEventListener('scroll', () => {
+    const boton = document.getElementById('boton-arriba');
+    if (window.scrollY > 100) {
+      boton.style.display = 'block'; // Mostrar botón
+    } else {
+      boton.style.display = 'none'; // Ocultar botón
+    }
+  });
+</script>
+</body>
+</html>

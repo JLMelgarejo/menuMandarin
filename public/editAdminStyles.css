@@ -1,0 +1,164 @@
+/* Reset básico */
+body, h1, a, form, input, select, textarea, button, table, th, td {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tipografía y diseño general */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #007BFF;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Enlaces */
+a {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botones */
+button, .btn {
+  display: inline-block;
+  background-color: #007BFF;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de eliminar */
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f1f1f1;
+}
+
+td {
+  text-align: center;
+}
+
+/* Estilo para los platillos disponibles (verde) */
+td.disponible {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Estilo para los platillos no disponibles (rojo) */
+td.no-disponible {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  header {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  table td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem;
+    position: relative;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .btn {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+}
+
+
+
